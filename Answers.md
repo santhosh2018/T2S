@@ -1,5 +1,18 @@
 - What would you add to your solution if you had more time?
-- What's your favourite programming language? Why?
+	- Perfect DB schema preparation (data normalization)
+	- Implement user token management in API level (signup/logout/auto-expire)
+	- Implement CRUD for stores and customers
+	- Code optimization on the DB level
+- What's your favorite programming language? Why?
+	- Perl and NodeJS as it's developer friendly
+	- Object-oriented and impressed with async and promise on Node
 - How would you track down a performance bottleneck in an application? Have you ever had to do this?
+	- jaeger used for API tracing
+	- prometheus for process monitoring (system resource level)
+	- 'ab' command line tool , apache benchmark for Performance test 
 - How would you deploy your API in a production environment?
+	- AWS EC2 instance through CI/CD from bitbucket(git).
 - Please describe yourself using either XML or JSON.
+        - Using JSON and Not much exposure to XML.
+        - JSON data is more compact, debugging easier and faster
+        - comfort with all technologies
