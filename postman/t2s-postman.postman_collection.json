@@ -1,0 +1,273 @@
+{
+	"variables": [],
+	"info": {
+		"name": "t2s-postman",
+		"_postman_id": "cd6ac48e-4316-0d26-c9ce-f706e83c595a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"request": {
+				"url": "http://localhost:3000/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"password\" : \"test\",\n\"name\" : \"test\"\n}"
+				},
+				"description": "Get token given user. test/test or santhosh/santhosh pre-defined users"
+			},
+			"response": []
+		},
+		{
+			"name": "create Store",
+			"request": {
+				"url": "http://localhost:3000/api/dev/stores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"phone\": \"9840725324\", \"name\": \"True2Success-INDIA-DEVISION\", \"domain\": \"t2s.com\", \"state\": \"TN\", \"street\": \"chennai\", \"status\": \"true\"}"
+				},
+				"description": "Create Store"
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve list all store",
+			"request": {
+				"url": "http://localhost:3000/api/dev/stores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"phone\": \"9840725324\", \"name\": \"True2Success-INDIA\", \"domain\": \"t2s.com\", \"state\": \"TN\", \"street\": \"chennai\", \"status\": \"true\"}"
+				},
+				"description": "retrieve list all store"
+			},
+			"response": []
+		},
+		{
+			"name": "update a store",
+			"request": {
+				"url": "http://localhost:3000/api/dev/stores/17",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"domain\": \"t2s-india.com\" }"
+				},
+				"description": "update a store"
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve store with customer count",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/dev/stores?count=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"dev",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"domain\": \"t2s-india.com\" }"
+				},
+				"description": "retrieve store with customer count"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a Stores Customers",
+			"request": {
+				"url": "http://localhost:3000/api/dev/customers/id-1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"domain\": \"t2s-india.com\" }"
+				},
+				"description": "Retrieve a Stores Customers"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Customer",
+			"request": {
+				"url": "http://localhost:3000/api/dev/customers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"santhosh\",\n  \"last_name\": \"kumar\",\n  \"email\": \"ss@gmai.com\",\n  \"phone\": \"9840725324\",\n  \"store_id\": 17\n}"
+				},
+				"description": "Create a Customer"
+			},
+			"response": []
+		},
+		{
+			"name": "Search for Store",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/dev/stores?name=success",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"dev",
+						"stores"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "success",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"santhosh\",\n  \"last_name\": \"kumar\",\n  \"email\": \"ss@gmai.com\",\n  \"phone\": \"9840725324\",\n  \"store_id\": 17\n}"
+				},
+				"description": "Search for Store"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving a Store by ID",
+			"request": {
+				"url": "http://localhost:3000/api/dev/stores/17",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIxMjg2NjExfQ.gbaPTBihyaOH7kO4es4EowYfrfjQXvjt0QCH55XemlM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"santhosh\",\n  \"last_name\": \"kumar\",\n  \"email\": \"ss@gmai.com\",\n  \"phone\": \"9840725324\",\n  \"store_id\": 17\n}"
+				},
+				"description": "Retrieving a Store by ID"
+			},
+			"response": []
+		}
+	]
+}

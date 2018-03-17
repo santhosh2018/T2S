@@ -1,0 +1,5 @@
+- What would you add to your solution if you had more time?
+- What's your favourite programming language? Why?
+- How would you track down a performance bottleneck in an application? Have you ever had to do this?
+- How would you deploy your API in a production environment?
+- Please describe yourself using either XML or JSON.

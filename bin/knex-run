@@ -1,0 +1,80 @@
+'use strict';
+const prog = require('commander');
+const config = require('config');
+const Promise = require('bluebird');
+var chalk = require('chalk');
+if (process.env.NODE_ENV === undefined) process.env.NODE_ENV = 'development';
+const env = process.env.NODE_ENV;
+
+/* global approot */
+global.approot = require('app-root-path');
+
+prog
+    .version('1.0')
+    .option('-r, --root', 'Run migrations for root / public schema')
+    .option('-s, --schema <schema>', 'Run migrations for specified schema')
+    .parse(process.argv);
+
+let schemaName = prog.schema || 'public';
+let schemaDir = prog.schema ? 'schema' : 'public';
+console.log(chalk.grey('Running against SCHEMA=' + chalk.yellow(schemaName)));
+
+let rdbmsConfig = config.get('rdbms');
+rdbmsConfig.migrations = {directory: `${approot}/db/migrations/${schemaDir}`};
+rdbmsConfig.pool = {min: 1, max: 1}; 
+
+let Knex = require('knex');
+const knex = new Knex(rdbmsConfig);
+
+global.schemaName = schemaName;
+let pending = null;
+knex.raw(`create schema if not exists ${schemaName} ; set search_path = ${schemaName}`). then( () => {
+    prog.command('migrate:latest')
+        .action(() => {
+            pending = knex.migrate.latest().spread((batchNo, log) => {
+            if (log.length === 0) {
+                success(chalk.cyan('Already up to date'));
+            }
+            success(
+                chalk.green(`Batch ${batchNo} run: ${log.length} migrations \n`) +
+                chalk.cyan(log.join('\n'))
+            );
+            }).catch(exit);
+        });
+    prog.command('migrate:rollback')
+        .action(() => {
+            pending = knex.migrate.rollback().spread((batchNo, log) => {
+            if (log.length === 0) {
+                success(chalk.cyan('Already at the base migration'));
+            }
+            success(
+                chalk.green(`Batch ${batchNo} rolled back: ${log.length} migrations \n`) +
+                chalk.cyan(log.join('\n'))
+            );
+            }).catch(exit);
+        });
+    prog.command('migrate:currentVersion')
+        .action(function () {
+            pending = knex.migrate.currentVersion().then(function(version) {
+                success(chalk.green('Current Version: ') + chalk.blue(version));
+            }).catch(exit);
+        });
+
+    prog.parse(process.argv);
+    Promise.resolve(pending).then( () => { prog.help(); });
+});
+
+function success(text) {
+    console.log(text);
+    process.exit(0);
+}
+
+function exit(text) {
+    if (text instanceof Error) {
+        chalk.red(console.error(text.stack));
+    } else {
+        chalk.red(console.error(text));
+    }
+    process.exit(1);
+}
+// vim: ft=javascript

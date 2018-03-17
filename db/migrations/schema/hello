@@ -1,0 +1,6 @@
+fgdev@e264fe493d15:~/src$ node bin/knex-run -s dev migrate:latest
+Running against SCHEMA=dev
+Batch 1 run: 2 migrations 
+/home/fgdev/src/db/migrations/schema/20180315100000-store.js
+/home/fgdev/src/db/migrations/schema/20180315200000-customer.js
+
