@@ -234,6 +234,7 @@ fg=# \d+ dev.customer
  store_id   | integer                |                                                           | plain    |              | 
 Indexes:
     "customer_pkey" PRIMARY KEY, btree (id)
+    "dev_customer_phone_email_store_id_unique" UNIQUE CONSTRAINT, btree (phone, email, store_id)
 Foreign-key constraints:
     "dev_customer_store_id_foreign" FOREIGN KEY (store_id) REFERENCES dev.store(id)
 
