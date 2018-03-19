@@ -12,6 +12,7 @@ exports.up = (knex) => {
     t.integer('store_id').unsigned()
       .references('id')
       .inTable(`${schemaName}.store`);
+    
   });
 };
 
