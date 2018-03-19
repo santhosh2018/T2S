@@ -12,7 +12,11 @@ exports.up = (knex) => {
     t.integer('store_id').unsigned()
       .references('id')
       .inTable(`${schemaName}.store`);
+<<<<<<< HEAD
     
+=======
+    t.unique([ 'phone', 'email' ,'store_id' ]);
+>>>>>>> b1745fddffbd703f3647bb38b7d7d726fc215465
   });
 };
 
